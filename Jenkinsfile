@@ -29,9 +29,7 @@ pipeline {
                     branch: 'master',
                     url: 'https://github.com/alsyean/sample-multi-api'
               
-              dir ('./shellScript/execute'){ 
-                sh 'sh submodule.sh'
-              }  
+                
             }
 
             post {
@@ -43,7 +41,9 @@ pipeline {
                   mail  to: 'doc_test@tmpbox.net',
                           subject: "success Pipelinee",
                           body: "Something is success with deploy frontend"
-                  
+                  dir ('./shellScript/execute'){ 
+                    sh 'sh submodule.sh'
+                  }
                   
                   
                 }

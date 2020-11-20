@@ -28,6 +28,10 @@ pipeline {
                 git credentialsId: 'testJenkins',
                     branch: 'master',
                     url: 'https://github.com/alsyean/smaple-multi/'
+              
+              
+                sh 'rm -rf ./test'
+                sh 'git submodule update --init --recursive'
             }
 
             post {
@@ -35,10 +39,13 @@ pipeline {
                   echo 'successfully clone'
                   
                    slackSend (channel: '#jenkins', color: '#00FF00', message: "SUCCESSFUL : Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-                  
+                                
                   mail  to: 'doc_test@tmpbox.net',
                           subject: "success Pipelinee",
                           body: "Something is success with deploy frontend"
+                  
+                  
+                  
                 }
 
                 always {
@@ -61,8 +68,7 @@ pipeline {
                 }
             }
 
-    }
-    
+    }    
     
     stage('Build') {
         steps {  

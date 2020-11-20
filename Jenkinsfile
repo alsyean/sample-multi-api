@@ -65,7 +65,7 @@ pipeline {
     }        
     
     stage('Check out'){
-      steos {
+      steps {
        checkout([
            $class: 'GitSCM',
             branches: scm.branches,

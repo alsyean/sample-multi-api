@@ -61,19 +61,7 @@ pipeline {
                 }
             }
 
-    }
-    
-    stage('SubModule Clone') {
-      steps {
-        
-        echo 'sub module'
-        
-         dir ('./shellScript/execute'){
-            sh 'sh ./submodule.sh'
-          }
-      }
-    }
-    
+    }    
     
     stage('Build') {
         steps {  

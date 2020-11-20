@@ -27,9 +27,17 @@ pipeline {
 
                 git credentialsId: 'testJenkins',
                     branch: 'master',
-                    url: 'https://github.com/alsyean/smaple-multi/'
+                    url: 'https://github.com/alsyean/smaple-multi/',
+                      checkout([
+                        $class: 'GitSCM', 
+                        branches: [[name: '*/master']], 
+                        doGenerateSubmoduleConfigurations: false, 
+                        extensions: [[$class: 'CleanCheckout']], 
+                        submoduleCfg: [], 
+                        userRemoteConfigs: [[credentialsId: 'testJenkins', url: 'https://github.com/alsyean/sample-multi-common']]
+                    ])
               
-                sh 'git submodule update --init --recursive'
+                
             }
 
             post {

@@ -28,6 +28,8 @@ pipeline {
                 git credentialsId: 'testJenkins',
                     branch: 'master',
                     url: 'https://github.com/alsyean/sample-multi-api'
+              
+                sh 'git submodule update --init --recursive'
                 
             }
 

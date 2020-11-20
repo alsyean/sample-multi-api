@@ -24,11 +24,10 @@ pipeline {
 
             steps{
                 echo 'git clone'
-
-                checkout ([$ class : 'GitSCM',  master : [[name : '* / master']],
-                  userRemoteConfigs : [[url: 'https://github.com/alsyean/sample-multi-api']]])
-                    
-              
+               
+                git credentialsId: 'testJenkins',
+                    branch: 'master',
+                    url: 'https://github.com/alsyean/smaple-multi/'
                 
             }
 
@@ -63,8 +62,7 @@ pipeline {
                 }
             }
 
-    }    
-    
+    }        
     stage('Build') {
         steps {  
           echo 'java jar '

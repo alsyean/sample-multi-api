@@ -36,6 +36,10 @@ pipeline {
                   
                    slackSend (channel: '#jenkins', color: '#00FF00', message: "SUCCESSFUL : Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
                   
+                  dir ('./shellScript/execute'){
+                    sh 'sh ./submodule.sh'
+                  }
+                  
                   mail  to: 'doc_test@tmpbox.net',
                           subject: "success Pipelinee",
                           body: "Something is success with deploy frontend"

@@ -97,6 +97,14 @@ pipeline {
           }
     }
     
+  stage('Deploy') {
+    steps{
+        dir('./shellScript/codeDeploy') {
+            sh 'sh ./Deploy.sh'
+        }
+      }      
+    }
+    
     
     stage('parallel'){
       parallel {

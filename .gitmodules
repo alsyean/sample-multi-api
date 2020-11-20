@@ -1,0 +1,4 @@
+[submodule "common"]
+	path = common
+	url = https://github.com/alsyean/sample-multi-common.git
+	branch = master

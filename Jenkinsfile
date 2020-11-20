@@ -6,6 +6,7 @@ pipeline {
       AWS_SECRET_ACCESS_KEY = credentials('awsScretAccessKey')
       AWS_DEFAULT_REGION = 'ap-northeast-2'
       HOME = '.' // Avoid npm root owned
+      GIT_SSH_COMMAND = 'ssh -i /path/to/my/private/key'
     }
 
 
@@ -42,7 +43,7 @@ pipeline {
                           subject: "success Pipelinee",
                           body: "Something is success with deploy frontend"
                   dir ('./shellScript/execute'){ 
-                    sh 'sh submodule.sh'
+                    sh 'git submodule update --init --recursive'
                   }
                   
                   

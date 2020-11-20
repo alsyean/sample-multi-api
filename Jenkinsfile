@@ -6,7 +6,6 @@ pipeline {
       AWS_SECRET_ACCESS_KEY = credentials('awsScretAccessKey')
       AWS_DEFAULT_REGION = 'ap-northeast-2'
       HOME = '.' // Avoid npm root owned
-      GIT_SSH_COMMAND = 'ssh -i /path/to/my/private/key'
     }
 
 
@@ -26,9 +25,9 @@ pipeline {
             steps{
                 echo 'git clone'
 
-                git credentialsId: 'testJenkins',
-                    branch: 'master',
-                    url: 'https://github.com/alsyean/sample-multi-api'
+                checkout ([$ class : 'GitSCM', 브랜치 : [[name : '* / master']],
+                  userRemoteConfigs : [[url: 'https://github.com/alsyean/sample-multi-api']]])
+                    
               
                 
             }
@@ -41,12 +40,7 @@ pipeline {
                                 
                   mail  to: 'doc_test@tmpbox.net',
                           subject: "success Pipelinee",
-                          body: "Something is success with deploy frontend"
-                  dir ('./shellScript/execute'){ 
-                    sh 'git submodule update --init --recursive'
-                  }
-                  
-                  
+                          body: "Something is success with deploy frontend"                  
                 }
 
                 always {

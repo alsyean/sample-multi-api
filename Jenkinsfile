@@ -65,7 +65,7 @@ pipeline {
     }        
     
     stage('Check out'){
-      
+      steos {
        checkout([
            $class: 'GitSCM',
             branches: scm.branches,
@@ -73,7 +73,7 @@ pipeline {
            extensions: scm.extensions + [[$class: 'SubmoduleOption', parentCredentials: true]],
            userRemoteConfigs: scm.userRemoteConfigs
        ])
-
+      }
     }
     
 

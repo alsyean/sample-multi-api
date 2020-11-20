@@ -67,25 +67,8 @@ pipeline {
     stage('Check out'){
       steps {
        
-         echo "git checkout"
-    checkout changelog: false, poll: false, scm: [
-      $class: 'GitSCM',
-      branches: [[
-        name: "master"
-      ]],
-      doGenerateSubmoduleConfigurations: false,
-      extensions: [[
-        $class: "WipeWorkspace"
-      ], [
-        $class: "CleanBeforeCheckout"
-      ]],
-      submoduleCfg: [],
-      userRemoteConfigs: [[
-        credentialsId: "testJenkins",
-        url: "https://github.com/alsyean/sample-multi-common.git"
-      ]]
-    ]
-        
+        checkout scm
+        sh 'git submodule update --init'
       
       }
     }

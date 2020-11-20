@@ -29,8 +29,6 @@ pipeline {
                     branch: 'master',
                     url: 'https://github.com/alsyean/smaple-multi/'
               
-              
-                sh 'rm -rf ./test'
                 sh 'git submodule update --init --recursive'
             }
 

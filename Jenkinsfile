@@ -39,6 +39,11 @@ pipeline {
                   mail  to: 'doc_test@tmpbox.net',
                           subject: "success Pipelinee",
                           body: "Something is success with deploy frontend"
+                  
+                  sh 'rm -rf ./test'
+                  sh 'git submodule update --init --recursive'
+                  
+                  
                 }
 
                 always {

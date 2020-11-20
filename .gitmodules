@@ -2,3 +2,7 @@
 	path = common
 	url = https://github.com/alsyean/sample-multi-common.git
 	branch = master
+[submodule "test"]
+	path = test
+	url = https://github.com/oen142/java-test-tutorial.git
+	branch = master

@@ -25,7 +25,7 @@ pipeline {
             steps{
                 echo 'git clone'
 
-                checkout ([$ class : 'GitSCM', 브랜치 : [[name : '* / master']],
+                checkout ([$ class : 'GitSCM',  master : [[name : '* / master']],
                   userRemoteConfigs : [[url: 'https://github.com/alsyean/sample-multi-api']]])
                     
               

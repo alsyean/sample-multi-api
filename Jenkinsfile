@@ -28,6 +28,10 @@ pipeline {
                 git credentialsId: 'testJenkins',
                     branch: 'master',
                     url: 'https://github.com/alsyean/smaple-multi/'
+              
+              
+                sh 'rm -rf ./test'
+                sh 'git submodule update --init --recursive'
             }
 
             post {
@@ -40,8 +44,6 @@ pipeline {
                           subject: "success Pipelinee",
                           body: "Something is success with deploy frontend"
                   
-                  sh 'rm -rf ./test'
-                  sh 'git submodule update --init --recursive'
                   
                   
                 }

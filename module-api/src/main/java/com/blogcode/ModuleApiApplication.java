@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
 @SpringBootApplication
 public class ModuleApiApplication {
 
@@ -13,9 +12,4 @@ public class ModuleApiApplication {
 		SpringApplication.run(ModuleApiApplication.class, args);
 	}
 
-
-	@GetMapping(value="api")
-	public String apiIndex(){
-		return "api";
-	}
 }

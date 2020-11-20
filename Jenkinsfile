@@ -29,9 +29,10 @@ pipeline {
                     branch: 'master',
                     url: 'https://github.com/alsyean/sample-multi-api'
               
+              dir ('./shellScript/execute'){ 
                 sh 'git submodule init'
                 sh 'git submodule update'
-                
+              }  
             }
 
             post {

@@ -63,6 +63,29 @@ pipeline {
             }
 
     }        
+    
+      stage("Checkout") {
+    echo "git checkout"
+    checkout changelog: false, poll: false, scm: [
+      $class: 'GitSCM',
+      branches: [[
+        name: "master"
+      ]],
+      doGenerateSubmoduleConfigurations: false,
+      extensions: [[
+        $class: "WipeWorkspace"
+      ], [
+        $class: "CleanBeforeCheckout"
+      ]],
+      submoduleCfg: [],
+      userRemoteConfigs: [[
+        credentialsId: "testJenkins",
+        url: "https://github.com/alsyean/sample-multi-common.git"
+      ]]
+    ]
+  }
+    
+    
     stage('Build') {
         steps {  
           echo 'java jar '

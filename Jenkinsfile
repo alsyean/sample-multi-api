@@ -27,18 +27,7 @@ pipeline {
 
                 git credentialsId: 'testJenkins',
                     branch: 'master',
-                    url: 'https://github.com/alsyean/sample-multi-api',
-                  checkout([$class: 'GitSCM',
-                      branches: [[name: '*/master']],
-                      doGenerateSubmoduleConfigurations: false,
-                      extensions: [[$class: 'common',
-                                    disableSubmodules: false,
-                                    parentCredentials: false,
-                                    recursiveSubmodules: true,
-                                    reference: '',
-                                    trackingSubmodules: false]], 
-                      submoduleCfg: [], 
-                      userRemoteConfigs: [[url: 'https://github.com/alsyean/sample-multi-common.git']]])
+                    url: 'https://github.com/alsyean/sample-multi-api'
                 
             }
 

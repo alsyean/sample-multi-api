@@ -29,7 +29,8 @@ pipeline {
                     branch: 'master',
                     url: 'https://github.com/alsyean/sample-multi-api'
               
-                sh 'git submodule update --init --recursive'
+                sh 'git submodule init'
+                sh 'git submodule update'
                 
             }
 

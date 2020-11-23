@@ -13,6 +13,8 @@ cp ../../module-api/build/libs/* ./${api}
 
 cp ./codeDeploy/* ./${api}
 
+cp ../../appspec.yml ./${api}
+
 cd ./${api}
 
 zip -r ${api}.zip * -x module*.sh 

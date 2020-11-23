@@ -99,7 +99,7 @@ pipeline {
     
   stage('Deploy') {
     steps{
-        dir('./shellScript/codeDeploy') {
+        dir('./shellScript/execute/codeDeploy') {
             sh 'sh ./Deploy.sh'
         }
       }      

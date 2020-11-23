@@ -1,5 +1,5 @@
 #!/bin/bash
-BUILD_PATH=$(ls /home/ec2-user/deploy/*.jar)
+BUILD_PATH=$(ls /home/ec2-user/multiModule-api/*.jar)
 JAR_NAME=$(basename $BUILD_PATH)
 echo "> build 파일명: $JAR_NAME"
 

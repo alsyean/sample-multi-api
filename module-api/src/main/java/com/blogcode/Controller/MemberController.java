@@ -21,5 +21,20 @@ public class MemberController {
         return success.toString();
 
     }
+    
+     @GetMapping(value = "/")
+    public String index() {
+        InetAddress local;
+        String ip = "";
+        try {
+            local = InetAddress.getLocalHost();
+            ip = local.getHostAddress();
+            System.out.println("local ip : " + ip);
+        } catch (UnknownHostException e1) {
+            e1.printStackTrace();
+        }
+
+        return "index" + ip ;
+    }
 
 }

@@ -6,4 +6,4 @@ aws deploy create-deployment \
 --deployment-config-name CodeDeployDefault.OneAtATime \
 --deployment-group-name abee-application-ApiSever \
 --region ap-northeast-2 \
---s3-location bucket=spring-boot-bucket,bundleType=zip,key=api/api.zip
+--s3-location bucket=abee-devops-cicd,bundleType=zip,key=api/api.zip

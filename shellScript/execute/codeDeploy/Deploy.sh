@@ -2,7 +2,7 @@
 
 echo "    > AWS CodeDeploy 배포"
 aws deploy create-deployment \
---application-name abee-apllication-ApiSever \
+--application-name abee-application-ApiSever \
 --deployment-config-name CodeDeployDefault.OneAtATime \
 --deployment-group-name abee-application-ApiSever \
 --region ap-northeast-2 \

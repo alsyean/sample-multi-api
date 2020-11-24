@@ -2,8 +2,8 @@
 
 echo "    > AWS CodeDeploy 배포"
 aws deploy create-deployment \
---application-name applicationcode \
+--application-name abee-application-ApiSever \
 --deployment-config-name CodeDeployDefault.OneAtATime \
---deployment-group-name submodule \
+--deployment-group-name abee-application-ApiSever \
 --region ap-northeast-2 \
 --s3-location bucket=spring-boot-bucket,bundleType=zip,key=api/api.zip

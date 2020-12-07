@@ -73,6 +73,36 @@ pipeline {
       }
     }
     
+    age('SonarQube'){
+      
+      environment {
+        scannerHome = tool 'SonarQubeScanner'
+      }
+      
+      steps {
+        
+        withSonarQubeEnv('SonarQubeServer') { // Will pick the global server connection you have configured
+          
+          sh 'chmod +x ./gradlew' 
+          sh './gradlew build' 
+          sh "${scannerHome}/bin/sonar-scanner -X"
+          
+        }
+      }
+      
+      post {
+        success {
+          echo 'Successfully SonarQube'
+          slackSend (channel: '#jenkins', color: '#00FF00',  message: "SonarQube 성공 : SonarQube Success")
+        }
+        
+        failure {
+          echo 'Fail SonarQube'
+          slackSend (channel: '#jenkins', color: '#00FF00', message: "SonarQube 실패 : SonarQube Fail")
+        }
+      }
+      
+    }
 
     
     

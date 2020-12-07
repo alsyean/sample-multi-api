@@ -73,7 +73,7 @@ pipeline {
       }
     }
     
-    age('SonarQube'){
+    stage('SonarQube'){
       
       environment {
         scannerHome = tool 'SonarQubeScanner'

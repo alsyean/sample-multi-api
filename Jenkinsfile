@@ -17,62 +17,7 @@ pipeline {
                 slackSend (channel: '#jenkins', color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
             }
       }
-    
-    stage('Clone'){
-
-            agent any
-
-            steps{
-                echo 'git clone'
-               
-                git credentialsId: 'testJenkins',
-                    branch: 'master',
-                    url: 'https://github.com/alsyean/smaple-multi/'
-                
-            }
-
-            post {
-                success {
-                  echo 'successfully clone'
-                  
-                   slackSend (channel: '#jenkins', color: '#00FF00', message: "SUCCESSFUL : Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-                                
-                  mail  to: 'doc_test@tmpbox.net',
-                          subject: "success Pipelinee",
-                          body: "Something is success with deploy frontend"                  
-                }
-
-                always {
-                    echo 'i tired ...'
-                }
-
-                cleanup {
-                    echo 'after all other post'
-                }
-
-                failure {
-                    echo 'fail clone'
-                    
-                  slackSend (channel: '#jenkins', color: '#00FF00', message: "FAILED Git Clone")
-                  
-                    mail  to: 'doc_test@tmpbox.net',
-                          subject: "Deploy Frontend Success",
-                          body: "Successfully deployed frontend!"
-
-                }
-            }
-
-    }        
-    
-    stage('Check out'){
-      steps {
-       
-        checkout scm
-        sh 'git submodule update --init'
-      
-      }
-    }
-    
+        
     stage('SonarQube'){
       
       environment {

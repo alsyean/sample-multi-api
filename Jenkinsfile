@@ -23,33 +23,6 @@ pipeline {
       environment {
         scannerHome = tool 'SonarQubeScanner'
       }
-      
-      steps {
-        
-        withSonarQubeEnv('SonarQubeServer') { // Will pick the global server connection you have configured
-          
-          sh 'chmod +x ./gradlew' 
-          sh './gradlew build' 
-          sh "${scannerHome}/bin/sonar-scanner -X"
-          
-        }
-      }
-      
-      post {
-        success {
-          echo 'Successfully SonarQube'
-          slackSend (channel: '#jenkins', color: '#00FF00',  message: "SonarQube 성공 : SonarQube Success")
-        }
-        
-        failure {
-          echo 'Fail SonarQube'
-          slackSend (channel: '#jenkins', color: '#00FF00', message: "SonarQube 실패 : SonarQube Fail")
-        }
-      }
-      
-    }
-
-    
     
     stage('Build') {
         steps {  
@@ -61,26 +34,7 @@ pipeline {
         }
       
     }
-    
-    stage('s3 Upload') {
-          steps {
-           echo 's3 Upload' 
-            
-            dir ('./shellScript/execute'){ 
-              sh 'sh ./s3Upload.sh'
-            }
-          }
-    }
-    
-  stage('Deploy') {
-    steps{
-        dir('./shellScript/execute/codeDeploy') {
-            sh 'sh ./Deploy.sh'
-        }
-      }      
-    }
-    
-    
+        
     stage('parallel'){
       parallel {
         stage('parallel 1'){

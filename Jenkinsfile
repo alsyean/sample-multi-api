@@ -11,19 +11,6 @@ pipeline {
 
   stages {
     
-     stage('Start') {
-            agent any
-            steps {
-                slackSend (channel: '#jenkins', color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-            }
-      }
-        
-    stage('SonarQube'){
-      
-      environment {
-        scannerHome = tool 'SonarQubeScanner'
-      }
-    
     stage('Build') {
         steps {  
           echo 'java jar '
@@ -34,24 +21,6 @@ pipeline {
         }
       
     }
-        
-    stage('parallel'){
-      parallel {
-        stage('parallel 1'){
-          steps{
-            echo 'In Parallel 1'
-          }
-        }
-        
-        stage('parallel 2'){
-          steps{
-            echo 'In Parallel 2'
-          }
-        }
-        
-      }
-      
-    }
-    
+            
   } 
 }

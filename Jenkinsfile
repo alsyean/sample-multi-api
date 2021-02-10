@@ -25,7 +25,7 @@ pipeline {
             steps{
                 echo 'git clone'
                
-                git credentialsId: 'testJenkins',
+                git credentialsId: 'sample-multi',
                     branch: 'master',
                     url: 'https://github.com/alsyean/smaple-multi/'
                 
